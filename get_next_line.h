@@ -6,7 +6,7 @@
 /*   By: ssaavedr <ssaavedr@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 12:52:15 by ssaavedr          #+#    #+#             */
-/*   Updated: 2026/11/17 13:01:10 by ssaavedr         ###   ########.fr       */
+/*   Updated: 2026/11/17 17:49:42 by ssaavedr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-int	ft_printchar(char c);
+char *get_next_line(int fd);
 
 #endif
