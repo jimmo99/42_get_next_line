@@ -6,7 +6,7 @@
 /*   By: ssaavedr <ssaavedr@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 12:51:50 by ssaavedr          #+#    #+#             */
-/*   Updated: 2026/11/17 12:51:51 by ssaavedr         ###   ########.fr       */
+/*   Updated: 2026/11/24 09:28:14 by ssaavedr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,18 @@ char	*ft_strjoin(char *stash, char *buffer)
 	}
 	if (!buffer)
 		return (free(stash), NULL);
-	joined = (char *)malloc((ft_strlen(stash)
-		+ ft_strlen(buffer) + 1) * sizeof(char));
+	joined = malloc((ft_strlen(stash) + ft_strlen(buffer) + 1) * sizeof(char));
 	if (!joined)
 		return (free(stash), NULL);
-	i = -1;
-	while (stash[++i] != '\0')
-		joined[i] = stash[i];
+	i = 0;
+	j = 0;
+	while (stash[j] != '\0')
+		joined[i++] = stash[j++];
 	j = 0;
 	while (buffer[j] != '\0')
 		joined[i++] = buffer[j++];
 	joined[i] = '\0';
-	free(stash);
-	return (joined);
+	return (free(stash), joined);
 }
 
 char	*ft_substr(char const *str, unsigned int start, size_t len)
