@@ -6,7 +6,7 @@
 /*   By: ssaavedr <ssaavedr@student.42urduliz.com>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/17 12:51:29 by ssaavedr          #+#    #+#             */
-/*   Updated: 2026/11/24 09:55:06 by ssaavedr         ###   ########.fr       */
+/*   Updated: 2026/11/25 14:11:41 by ssaavedr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,39 @@ static char	*extract_line(char *stash)
 
 static char	*update_stash(char *stash)
 {
+	char	*new_stash;
+	size_t	i;
 
+	i = 0;
+	while (stash[i] != '\0' && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\0')
+	{
+		free(stash);
+		return (NULL);
+	}
+	new_stash = ft_substr(stash, i + 1, ft_strlen(stash));
+	free(stash);
+	return (new_stash);
 }
 
 char	*get_next_line(int fd)
 {
+	static char	*stash;
+	char		*line;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	stash = read_to_stash(fd, stash);
+	if (!stash)
+		return (NULL);
+	line = extract_line(stash);
+	if (!line)
+	{
+		free(stash);
+		stash = NULL;
+		return (NULL);
+	}
+	stash = update_stash(stash);
+	return (line);
 }
